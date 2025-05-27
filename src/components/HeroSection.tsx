@@ -1,7 +1,7 @@
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen bg-gradient-to-l from-primary via-primary/95 to-primary/90 overflow-hidden">
+    <section className="relative min-h-screen bg-gradient-to-l from-blue-800 via-blue-700 to-blue-600 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
@@ -16,7 +16,7 @@ const HeroSection = () => {
               <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-4">
                 BMD
               </h1>
-              <div className="h-2 w-32 bg-accent mx-auto lg:mr-0 rounded-full"></div>
+              <div className="h-2 w-32 bg-blue-400 mx-auto lg:mr-0 rounded-full"></div>
             </div>
             
             {/* Main Headline */}
@@ -69,17 +69,17 @@ const HeroSection = () => {
                 
                 {/* Main image */}
                 <img 
-                  src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=800&h=800" 
+                  src="/lovable-uploads/92432ce1-6d9d-4ffb-b7b4-f14dca98a788.png" 
                   alt="BMD Delivery Team"
                   className="relative z-10 w-full h-full object-cover rounded-full border-8 border-white/30 shadow-2xl"
                 />
                 
                 {/* Floating elements */}
-                <div className="absolute -top-4 -right-4 bg-accent text-white p-4 rounded-full shadow-xl animate-bounce">
+                <div className="absolute -top-4 -right-4 bg-blue-600 text-white p-4 rounded-full shadow-xl animate-bounce">
                   <i className="fas fa-shipping-fast text-2xl"></i>
                 </div>
                 
-                <div className="absolute -bottom-4 -left-4 bg-secondary text-white p-4 rounded-full shadow-xl animate-bounce delay-500">
+                <div className="absolute -bottom-4 -left-4 bg-blue-500 text-white p-4 rounded-full shadow-xl animate-bounce delay-500">
                   <i className="fas fa-truck text-2xl"></i>
                 </div>
               </div>
