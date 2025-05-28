@@ -215,7 +215,7 @@ const ClosingSection = () => {
                   </div>
                   <div>
                     <div className="font-bold">اتصل بنا</div>
-                    <div className="text-blue-100">+212 600 000 000</div>
+                    <div className="text-blue-100">(+212) 706077312</div>
                   </div>
                 </div>
 
@@ -225,7 +225,7 @@ const ClosingSection = () => {
                   </div>
                   <div>
                     <div className="font-bold">واتساب</div>
-                    <div className="text-blue-100">تواصل فوري</div>
+                    <div className="text-blue-100">(+212)706077312</div>
                   </div>
                 </div>
 
@@ -235,7 +235,7 @@ const ClosingSection = () => {
                   </div>
                   <div>
                     <div className="font-bold">البريد الإلكتروني</div>
-                    <div className="text-blue-100">info@bmd.ma</div>
+                    <div className="text-blue-100">bmdcontact1@gmail.ma</div>
                   </div>
                 </div>
               </div>
