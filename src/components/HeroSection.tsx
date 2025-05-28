@@ -21,9 +21,9 @@ const HeroSection = () => {
             {/* Logo/Brand */}
             <div className="inline-block">
               <img 
-                src="/lovable-uploads/71918f0e-027b-48bf-a58c-a37f5d8a5708.png" 
+                src="/lovable-uploads/8c72fa9f-b89f-4f24-b01b-26af98158e11.png" 
                 alt="BMD Logo"
-                className="h-20 md:h-24 lg:h-28 mx-auto lg:mr-0 mb-4 brightness-0 invert"
+                className="h-20 md:h-24 lg:h-28 mx-auto lg:mr-0 mb-4"
               />
               <div className="h-2 w-32 bg-blue-400 mx-auto lg:mr-0 rounded-full"></div>
             </div>
