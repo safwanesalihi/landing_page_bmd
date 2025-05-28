@@ -30,7 +30,7 @@ const ClosingSection = () => {
       formDataParams.append('timestamp', new Date().toISOString());
 
       // URL réelle du script Google Apps Script
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzk0SWezNb3wQjA_aod-qc_zgjlbkI6AqXRDvX1h7eLQMu8Hqp2UQ-dZ6LPqeCotk3IIw/exec';
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-7MR8ljR00SKoQQI_B76-pCBB1UPbu85J9KOp3kBmN1tbjN9FzUygDPSx6FQKkBS1ug/exec';
 
       // Utilisation de mode: 'no-cors' car Google Apps Script ne renvoie pas les bons headers CORS
       await fetch(GOOGLE_SCRIPT_URL, {
