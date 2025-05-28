@@ -22,29 +22,28 @@ const ClosingSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Prepare data in URL-encoded format (compatible with Google Apps Script)
+      // Préparation des données au format URL encoded (compatible avec Google Apps Script)
       const formDataParams = new URLSearchParams();
       formDataParams.append('name', formData.name);
       formDataParams.append('phone', formData.phone);
       formDataParams.append('storeName', formData.storeName);
       formDataParams.append('timestamp', new Date().toISOString());
       
-      // Your Google Apps Script URL - replace with your actual deployed URL
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnPbZqG-5Y8pK9QH2Vx1G3qJ8K2Lm4Np6QR7sT9uV0wX1yZ2a3B4c5D6e7F8g9H0i1/exec';
+      // URL réelle du script Google Apps Script
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyz5reKtEKMsrd9rsQl0smbDucFhFnHz6nxw5kjHM1hFHbS4UABtkerr60TWKPubCEzwg/exec';
       
-      // Using mode: 'no-cors' because Google Apps Script doesn't return proper CORS headers
-      // This means we can't check the response, but the request will be sent
+      // Utilisation de mode: 'no-cors' car Google Apps Script ne renvoie pas les bons headers CORS
       await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors', // Required to bypass CORS restrictions
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: formDataParams.toString()
       });
       
-      // Since we can't check the response in no-cors mode,
-      // we assume the request succeeded if no exception is thrown
+      // Comme on ne peut pas vérifier la réponse en mode no-cors,
+      // on suppose que la requête a réussi si aucune exception n'est levée
       window.location.href = '/thank-you';
     } catch (error) {
       console.error('Error submitting form:', error);
