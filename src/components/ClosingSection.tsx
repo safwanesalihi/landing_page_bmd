@@ -28,10 +28,10 @@ const ClosingSection = () => {
       formDataParams.append('phone', formData.phone);
       formDataParams.append('storeName', formData.storeName);
       formDataParams.append('timestamp', new Date().toISOString());
-      
+
       // URL réelle du script Google Apps Script
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyz5reKtEKMsrd9rsQl0smbDucFhFnHz6nxw5kjHM1hFHbS4UABtkerr60TWKPubCEzwg/exec';
-      
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzk0SWezNb3wQjA_aod-qc_zgjlbkI6AqXRDvX1h7eLQMu8Hqp2UQ-dZ6LPqeCotk3IIw/exec';
+
       // Utilisation de mode: 'no-cors' car Google Apps Script ne renvoie pas les bons headers CORS
       await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
@@ -41,7 +41,7 @@ const ClosingSection = () => {
         },
         body: formDataParams.toString()
       });
-      
+
       // Comme on ne peut pas vérifier la réponse en mode no-cors,
       // on suppose que la requête a réussi si aucune exception n'est levée
       window.location.href = '/thank-you';
@@ -77,7 +77,7 @@ const ClosingSection = () => {
         <div className="mb-16 reveal-animation">
           <div className="bg-gray-50 rounded-3xl p-8">
             <h3 className="text-2xl font-bold text-primary mb-8 text-center">نمو أعمالك مع BMD</h3>
-            
+
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="bg-white rounded-2xl p-6 shadow-lg">
                 <div className="flex items-end justify-center space-x-2 space-x-reverse h-64">
@@ -91,7 +91,7 @@ const ClosingSection = () => {
                     <span className="text-xs font-bold text-white">مع VIP</span>
                   </div>
                 </div>
-                
+
                 <div className="text-center mt-4">
                   <div className="text-lg font-bold text-primary">نمو المبيعات</div>
                   <div className="text-sm text-gray-600">خلال 3 أشهر</div>
@@ -103,12 +103,12 @@ const ClosingSection = () => {
                   <div className="text-4xl font-bold text-accent mb-2 animate-pulse-scale">+300%</div>
                   <div className="text-lg font-medium text-primary">زيادة في المبيعات</div>
                 </div>
-                
+
                 <div className="service-card text-center">
                   <div className="text-4xl font-bold text-secondary mb-2 animate-pulse-scale delay-300">95%</div>
                   <div className="text-lg font-medium text-primary">رضا العملاء</div>
                 </div>
-                
+
                 <div className="service-card text-center">
                   <div className="text-4xl font-bold text-primary mb-2 animate-pulse-scale delay-500">24/7</div>
                   <div className="text-lg font-medium text-primary">خدمة مستمرة</div>
@@ -121,7 +121,7 @@ const ClosingSection = () => {
         {/* Testimonials */}
         <div className="mb-16 reveal-animation">
           <h3 className="text-3xl font-bold text-primary mb-8 text-center">ماذا يقول عملاؤنا</h3>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="service-card text-center">
               <div className="w-16 h-16 bg-accent/10 rounded-full mx-auto mb-4 flex items-center justify-center">
@@ -164,14 +164,14 @@ const ClosingSection = () => {
             <h3 className="text-3xl md:text-4xl font-bold mb-6">
               سيفط لينا دابا – الفريق ديالنا كيسناك!
             </h3>
-            
+
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               {/* Contact Form */}
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
                 <h4 className="text-xl font-bold mb-4">تواصل معنا</h4>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="name"
                     placeholder="الاسم"
                     value={formData.name}
@@ -179,8 +179,8 @@ const ClosingSection = () => {
                     required
                     className="w-full p-3 rounded-lg text-primary border-none outline-none"
                   />
-                  <input 
-                    type="tel" 
+                  <input
+                    type="tel"
                     name="phone"
                     placeholder="رقم الهاتف"
                     value={formData.phone}
@@ -188,8 +188,8 @@ const ClosingSection = () => {
                     required
                     className="w-full p-3 rounded-lg text-primary border-none outline-none"
                   />
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="storeName"
                     placeholder="اسم المتجر"
                     value={formData.storeName}
@@ -197,7 +197,7 @@ const ClosingSection = () => {
                     required
                     className="w-full p-3 rounded-lg text-primary border-none outline-none"
                   />
-                  <button 
+                  <button
                     type="submit"
                     disabled={isSubmitting}
                     className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 disabled:opacity-50"
@@ -247,13 +247,13 @@ const ClosingSection = () => {
         <div className="mt-16 pt-8 border-t border-gray-200 text-center">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="mb-4 md:mb-0">
-              <img 
-                src="/lovable-uploads/d40f8913-3952-42ca-bbe9-3c708bc7ad99.png" 
+              <img
+                src="/lovable-uploads/d40f8913-3952-42ca-bbe9-3c708bc7ad99.png"
                 alt="BMD Logo"
                 className="h-12"
               />
             </div>
-            
+
             <div className="flex items-center space-x-6 space-x-reverse mb-4 md:mb-0">
               <a href="https://www.facebook.com/profile.php?id=61552039906541" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-accent transition-colors">
                 <i className="fab fa-facebook text-2xl"></i>
@@ -265,7 +265,7 @@ const ClosingSection = () => {
                 <i className="fab fa-whatsapp text-2xl"></i>
               </a>
             </div>
-            
+
             <div className="text-gray-600">
               © 2024 BMD. جميع الحقوق محفوظة.
             </div>
