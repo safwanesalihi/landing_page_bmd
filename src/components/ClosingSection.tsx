@@ -23,23 +23,31 @@ const ClosingSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Google Sheets Web App URL (you'll need to create this)
-      const response = await fetch('https://script.google.com/macros/s/AKfycbxnPbZqG-5Y8pK9QH2Vx1G3qJ8K2Lm4Np6QR7sT9uV0wX1yZ2a3B4c5D6e7F8g9H0i1/exec', {
+      // Prepare data in FormData format (more reliable with Google Apps Script)
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('storeName', formData.storeName);
+      formDataToSend.append('timestamp', new Date().toISOString());
+
+      // Your Google Apps Script URL - replace with your actual deployed URL
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnPbZqG-5Y8pK9QH2Vx1G3qJ8K2Lm4Np6QR7sT9uV0wX1yZ2a3B4c5D6e7F8g9H0i1/exec';
+
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          phone: formData.phone,
-          storeName: formData.storeName,
-          timestamp: new Date().toISOString()
-        })
+        body: formDataToSend,
+        // Don't set Content-Type, browser will handle it with FormData
+        // Don't use mode: 'no-cors' to be able to process the response
       });
 
-      // Redirect to thank you page
-      window.location.href = '/thank-you';
+      if (response.ok) {
+        // Redirect to thank you page
+        window.location.href = '/thank-you';
+      } else {
+        const errorData = await response.text();
+        console.error('Error response:', errorData);
+        throw new Error('Server responded with an error');
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
