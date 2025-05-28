@@ -1,5 +1,57 @@
 
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
+
 const ClosingSection = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    storeName: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Google Sheets Web App URL (you'll need to create this)
+      const response = await fetch('https://script.google.com/macros/s/AKfycbxnPbZqG-5Y8pK9QH2Vx1G3qJ8K2Lm4Np6QR7sT9uV0wX1yZ2a3B4c5D6e7F8g9H0i1/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          storeName: formData.storeName,
+          timestamp: new Date().toISOString()
+        })
+      });
+
+      // Redirect to thank you page
+      window.location.href = '/thank-you';
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "خطأ في الإرسال",
+        description: "حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="py-20 bg-white">
       <div className="section-container">
@@ -22,7 +74,6 @@ const ClosingSection = () => {
             <h3 className="text-2xl font-bold text-primary mb-8 text-center">نمو أعمالك مع BMD</h3>
             
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Chart Visualization */}
               <div className="bg-white rounded-2xl p-6 shadow-lg">
                 <div className="flex items-end justify-center space-x-2 space-x-reverse h-64">
                   <div className="bg-gray-300 w-12 h-16 rounded-t flex items-end justify-center pb-2">
@@ -42,7 +93,6 @@ const ClosingSection = () => {
                 </div>
               </div>
 
-              {/* Success Stats */}
               <div className="space-y-6">
                 <div className="service-card text-center">
                   <div className="text-4xl font-bold text-accent mb-2 animate-pulse-scale">+300%</div>
@@ -103,8 +153,8 @@ const ClosingSection = () => {
           </div>
         </div>
 
-        {/* Final CTA */}
-        <div className="text-center reveal-animation">
+        {/* Final CTA with Contact Form */}
+        <div className="text-center reveal-animation" id="contact-form">
           <div className="bg-gradient-to-l from-primary via-secondary to-accent p-12 rounded-3xl text-white">
             <h3 className="text-3xl md:text-4xl font-bold mb-6">
               سيفط لينا دابا – الفريق ديالنا كيسناك!
@@ -114,26 +164,42 @@ const ClosingSection = () => {
               {/* Contact Form */}
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
                 <h4 className="text-xl font-bold mb-4">تواصل معنا</h4>
-                <div className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <input 
                     type="text" 
+                    name="name"
                     placeholder="الاسم"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
                     className="w-full p-3 rounded-lg text-primary border-none outline-none"
                   />
                   <input 
                     type="tel" 
+                    name="phone"
                     placeholder="رقم الهاتف"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
                     className="w-full p-3 rounded-lg text-primary border-none outline-none"
                   />
                   <input 
                     type="text" 
+                    name="storeName"
                     placeholder="اسم المتجر"
+                    value={formData.storeName}
+                    onChange={handleInputChange}
+                    required
                     className="w-full p-3 rounded-lg text-primary border-none outline-none"
                   />
-                  <button className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300">
-                    أرسل الطلب
+                  <button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-accent hover:bg-accent/90 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 disabled:opacity-50"
+                  >
+                    {isSubmitting ? 'جاري الإرسال...' : 'أرسل الطلب'}
                   </button>
-                </div>
+                </form>
               </div>
 
               {/* Contact Methods */}
@@ -169,30 +235,28 @@ const ClosingSection = () => {
                 </div>
               </div>
             </div>
-
-            <button className="btn-primary text-2xl px-12 py-6">
-              <i className="fas fa-rocket ml-4"></i>
-              تواصل معنا الآن
-            </button>
           </div>
         </div>
 
         {/* Footer */}
         <div className="mt-16 pt-8 border-t border-gray-200 text-center">
           <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="text-3xl font-black text-primary mb-4 md:mb-0">BMD</div>
+            <div className="mb-4 md:mb-0">
+              <img 
+                src="/lovable-uploads/d40f8913-3952-42ca-bbe9-3c708bc7ad99.png" 
+                alt="BMD Logo"
+                className="h-12"
+              />
+            </div>
             
             <div className="flex items-center space-x-6 space-x-reverse mb-4 md:mb-0">
-              <a href="#" className="text-primary hover:text-accent transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=61552039906541" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-accent transition-colors">
                 <i className="fab fa-facebook text-2xl"></i>
               </a>
-              <a href="#" className="text-primary hover:text-accent transition-colors">
+              <a href="https://www.instagram.com/bmd_ma/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-accent transition-colors">
                 <i className="fab fa-instagram text-2xl"></i>
               </a>
-              <a href="#" className="text-primary hover:text-accent transition-colors">
-                <i className="fab fa-linkedin text-2xl"></i>
-              </a>
-              <a href="#" className="text-primary hover:text-accent transition-colors">
+              <a href="#contact-form" className="text-primary hover:text-accent transition-colors">
                 <i className="fab fa-whatsapp text-2xl"></i>
               </a>
             </div>

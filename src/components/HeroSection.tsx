@@ -1,5 +1,12 @@
 
 const HeroSection = () => {
+  const scrollToContact = () => {
+    const contactSection = document.querySelector('#contact-form');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen bg-gradient-to-l from-blue-800 via-blue-700 to-blue-600 overflow-hidden">
       {/* Background Pattern */}
@@ -13,9 +20,11 @@ const HeroSection = () => {
           <div className="text-center lg:text-right space-y-8 animate-fade-in">
             {/* Logo/Brand */}
             <div className="inline-block">
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-4">
-                BMD
-              </h1>
+              <img 
+                src="/lovable-uploads/d40f8913-3952-42ca-bbe9-3c708bc7ad99.png" 
+                alt="BMD Logo"
+                className="h-20 md:h-24 lg:h-28 mx-auto lg:mr-0 mb-4"
+              />
               <div className="h-2 w-32 bg-blue-400 mx-auto lg:mr-0 rounded-full"></div>
             </div>
             
@@ -37,7 +46,10 @@ const HeroSection = () => {
             
             {/* CTA Button */}
             <div className="pt-8">
-              <button className="btn-primary text-2xl md:text-3xl px-12 py-6 shadow-2xl">
+              <button 
+                onClick={scrollToContact}
+                className="btn-primary text-2xl md:text-3xl px-12 py-6 shadow-2xl"
+              >
                 <i className="fas fa-rocket ml-4"></i>
                 ابدأ الآن
               </button>
