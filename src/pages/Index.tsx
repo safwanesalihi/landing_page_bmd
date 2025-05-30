@@ -1,5 +1,5 @@
 
-imporimport { HeroSection } from '@/components/HeroSection';
+import { HeroSection } from '@/components/HeroSection';
 import { FastDeliverySection } from '@/components/FastDeliverySection';
 import { CompleteServiceSection } from '@/components/CompleteServiceSection';
 import { SmartPickupSection } from '@/components/SmartPickupSection';
